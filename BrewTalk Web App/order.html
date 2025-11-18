@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Place Order</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+     * { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: linear-gradient(135deg, #85622d 0%, #d2b06f 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+.header {
+    text-align: center;
+    padding: 20px;
+    background: #f2ede6;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccbfa8;
+}
+.logo {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+}
+.container { 
+    max-width: 900px; 
+    margin: auto; 
+}
+h1 { 
+    color: #563d03; 
+    font-size: 2.2em;
+}
+h2 {
+    color: #563d03;
+    margin: 25px 0 15px 0;
+    font-size: 1.5em;
+}
+.content-box {
+    background: #f2ede6;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccbfa8;
+}
+.form-group { 
+    margin: 20px 0; 
+}
+textarea { 
+    width: 100%; 
+    height: 120px; 
+    padding: 12px; 
+    font-size: 16px;
+    border: 2px solid #ccbfa8;
+    border-radius: 8px;
+    font-family: inherit;
+    background: #fdfbf7;
+}
+textarea:focus {
+    outline: none;
+    border-color: #85622d;
+}
+button { 
+    padding: 14px 30px; 
+    background: linear-gradient(135deg, #85622d 0%, #563d03 100%);
+    color: white; 
+    font-size: 18px; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+button:hover { 
+    transform: translateY(-2px);
+}
+.back { 
+    display: inline-block; 
+    margin: 0 0 20px 0; 
+    padding: 12px 25px; 
+    background: #85622d;
+    color: white; 
+    text-decoration: none; 
+    border-radius: 6px;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+.back:hover {
+    transform: translateY(-2px);
+}
+.menu-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.menu-list li {
+    background: #fdfbf7;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #85622d;
+}
+.menu-list strong {
+    color: #563d03;
+    font-size: 1.1em;
+}
+.price {
+    color: #85622d;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+.messages {
+    background: #f2ede6;
+    border: 1px solid #ccbfa8;
+    color: #563d03;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    list-style: none;
+}
+
+ </style>
+</head>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".item-check").forEach(cb => {
+        cb.addEventListener("change", () => {
+            const id = cb.dataset.id;
+            const qtyInput = document.querySelector(`input[name="qty_${id}"]`);
+
+            if (cb.checked) {
+                qtyInput.style.display = "inline-block";
+                qtyInput.value = 1;
+            } else {
+                qtyInput.style.display = "none";
+                qtyInput.value = "";
+            }
+        });
+    });
+});
+</script>
+
+
+<body>
+<style>
+    /* This is the second style block from your original file */
+    body {
+        font-family: "Poppins", sans-serif;
+        background: #f7f3e9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+
+    h1 {
+        font-size: 30px;
+        color: #4a3f35;
+    }
+
+    .back {
+        color: #6b4f37;
+        text-decoration: none;
+        font-weight: bold;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .content-box {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        color: #4a3f35;
+        margin-bottom: 15px;
+    }
+
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .item-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: 0.3s;
+        position: relative;
+    }
+
+    .item-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .item-img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .qty-box {
+        width: 60px;
+        padding: 6px;
+        margin-top: 8px;
+        display: none;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #6b4f37;
+        color: #fff;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #4e3928;
+    }
+
+    .messages {
+        padding: 10px;
+        background: #e6ffe6;
+        border: 1px solid #5ca85c;
+        border-radius: 8px;
+        color: #2c662c;
+    }
+
+</style>
+
+<div class="container">
+
+    <div class="header">
+        <img src="{{ url_for('static', filename='logo.png') }}" class="logo">
+        <h1>Place Customer Order</h1>
+    </div>
+
+    <a href="{{ url_for('index') }}" class="back">← Back to Dashboard</a>
+
+    <div class="content-box">
+        <h2>Select Items</h2>
+
+        <form method="POST">
+            <div class="menu-grid">
+
+                {% for item in menu_items %}
+                {% if item.in_stock %}
+                <div class="item-card">
+
+    <img src="{{ url_for('static', filename=item.image) }}" 
+         class="item-img"
+         onerror="this.src='https://via.placeholder.com/200x150?text=No+Image'">
+
+    <h3>{{ item.name }}</h3>
+    <p style="color:#6b4f37;font-weight:bold;">₹{{ "%.2f"|format(item.price) }}</p>
+
+    <label>
+        <input type="checkbox" 
+               class="item-check" 
+               name="item_{{ item.id }}" 
+               data-id="{{ item.id }}">
+        <span style="font-size:14px;">Add to Order</span>
+    </label>
+
+    <input type="number"
+           name="qty_{{ item.id }}"
+           class="qty-box"
+           min="1"
+           value="1">
+</div>
+
+                {% endif %}
+                {% endfor %}
+
+            </div>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+
+
+
+    <div class="content-box">
+        <h2>Available Menu (In Stock)</h2>
+
+        <ul>
+            {% for item in menu_items %}
+            {% if item.in_stock %}
+            <li>
+                <strong>{{ item.name }}</strong> — ₹{{ "%.2f"|format(item.price) }}
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+
+<script>
+    document.querySelectorAll(".item-check").forEach(chk => {
+        chk.addEventListener("change", function () {
+            const qtyBox = this.closest(".item-card").querySelector(".qty-box");
+            qtyBox.style.display = this.checked ? "block" : "none";
+        });
+    });
+</script>
+
+{{ watsonx_widget | safe }}
+</body>
+
+</html>
